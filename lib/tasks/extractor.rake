@@ -54,11 +54,19 @@ namespace :hqmf do
 
         File.open(outfile, 'a') do |f|
           by_type.values.each do |element|
-            output = "\"#{element[:measure_title]}\",\"#{element[:cms_id]}\",\"#{element[:version]}\",\"#{element[:definition]}\",\"#{element[:data_type]}\",\"#{element[:title]}\",\"#{element[:code_list_id]}\""
-            element[:fields].keys.each do |field_key|
-              output += ",\"#{field_key.titleize}\",\"#{element[:fields][field_key].uniq.join(',')}\""
+            if (element[:fields].keys.length == 0)
+              output = "\"#{element[:measure_title]}\",\"#{element[:cms_id]}\",\"#{element[:version]}\",\"#{element[:definition]}\",\"#{element[:data_type]}\",\"#{element[:title]}\",\"#{element[:code_list_id]}\""
+              f.write("#{output}\n")
+            else
+              output = "\"#{element[:measure_title]}\",\"#{element[:cms_id]}\",\"#{element[:version]}\",\"#{element[:definition]}\",\"#{element[:data_type]}\",\"#{element[:title]}\",\"#{element[:code_list_id]}\""
+              f.write("#{output}\n")
+              element[:fields].keys.each do |field_key|
+                element[:fields][field_key].uniq.each do |oid|
+                  output = "\"#{element[:measure_title]}\",\"#{element[:cms_id]}\",\"#{element[:version]}\",\"#{element[:definition]}\",\"#{element[:data_type]}\",\"#{element[:title]}\",\"#{element[:code_list_id]}\",\"#{field_key.titleize}\",\"#{oid}\""
+                  f.write("#{output}\n")
+                end
+              end
             end
-            f.write("#{output}\n")
           end
         end
 
