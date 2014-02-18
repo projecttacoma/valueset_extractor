@@ -58,8 +58,8 @@ namespace :hqmf do
               output = "\"#{element[:measure_title]}\",\"#{element[:cms_id]}\",\"#{element[:version]}\",\"#{element[:definition]}\",\"#{element[:data_type]}\",\"#{element[:title]}\",\"#{element[:code_list_id]}\""
               f.write("#{output}\n")
             else
-              output = "\"#{element[:measure_title]}\",\"#{element[:cms_id]}\",\"#{element[:version]}\",\"#{element[:definition]}\",\"#{element[:data_type]}\",\"#{element[:title]}\",\"#{element[:code_list_id]}\""
-              f.write("#{output}\n")
+              # output = "\"#{element[:measure_title]}\",\"#{element[:cms_id]}\",\"#{element[:version]}\",\"#{element[:definition]}\",\"#{element[:data_type]}\",\"#{element[:title]}\",\"#{element[:code_list_id]}\""
+              # f.write("#{output}\n")
               element[:fields].keys.each do |field_key|
                 element[:fields][field_key].uniq.each do |oid|
                   output = "\"#{element[:measure_title]}\",\"#{element[:cms_id]}\",\"#{element[:version]}\",\"#{element[:definition]}\",\"#{element[:data_type]}\",\"#{element[:title]}\",\"#{element[:code_list_id]}\",\"#{field_key.titleize}\",\"#{oid}\""
