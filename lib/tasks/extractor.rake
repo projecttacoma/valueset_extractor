@@ -21,7 +21,7 @@ namespace :hqmf do
 
         by_type = {}
         doc.all_data_criteria.each do |dc|
-          key = "#{dc.code_list_id}_#{dc.definition}_#{dc.status}"
+          key = "#{dc.code_list_id}_#{dc.definition}_#{dc.status}_#{dc.negation}"
           by_type[key] ||= {}
           elements = by_type[key]
           elements[:measure_title] ||= doc.title
